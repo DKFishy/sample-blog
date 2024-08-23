@@ -4,10 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-// Redirect root to posts index
-Route::get('/', function () {
-    return redirect()->route('posts.index');
-});
+// Route for the root URL to display posts index
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 // Public routes for posts (index and show are accessible to all)
 Route::resource('posts', PostController::class)->only([

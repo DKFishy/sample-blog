@@ -48,7 +48,7 @@ class PostController extends Controller
             'user_id' => auth()->id(),
         ]);
         
-        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+        return redirect()->route('home')->with('success', 'Post created successfully!');
     }
 
 
@@ -80,7 +80,7 @@ class PostController extends Controller
 
     $post->update($request->all());
 
-    return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
+    return redirect()->route('home')->with('success', 'Post updated successfully!');
     }
 
     /**
@@ -91,6 +91,6 @@ class PostController extends Controller
         $post->delete();
 
     
-    return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
+    return redirect()->route('home')->with('success', 'Post deleted successfully!');
     }
 }

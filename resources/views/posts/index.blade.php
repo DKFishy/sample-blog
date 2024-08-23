@@ -2,19 +2,26 @@
 
 @section('content')
     <div class="container mx-auto px-4 py-6">
-        <h1 class="text-2xl font-bold mb-4 text-black dark:text-gray-300">Samples Blog Posts</h1>
+        <h1 class="text-2xl font-bold mb-4 text-black dark:text-gray-300">Sample Blog Posts</h1>
         
         <!-- Success Message -->
         @if(session('success'))
-            <div id="success-message" class="alert alert-success mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
-                {{ session('success') }}
-            </div>
-        @endif
+    <div x-data="{ show: true }" 
+         x-init="setTimeout(() => show = false, 2000)" 
+         x-show="show"
+         x-transition:enter="transition-opacity ease-out duration-500"
+         x-transition:enter-start="opacity-100"
+         x-transition:leave="transition-opacity ease-in duration-500"
+         x-transition:leave-end="opacity-0"
+         class="fixed top-4 left-1/2 transform -translate-x-1/2 max-w-md w-full bg-green-100 text-green-800 border border-green-300 rounded p-4 z-50">
+        {{ session('success') }}
+    </div>
+@endif
         
         <!-- Create New Post Button -->
         @auth
         <a href="{{ route('posts.create') }}" class="btn btn-primary text-black dark:text-gray-400">Create New Post</a>
-	@endauth
+	    @endauth
 	        
         <!-- Posts List -->
         <div class="mt-6">
@@ -41,20 +48,4 @@
             @endif
         </div>
     </div>
-    
-     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var successMessage = document.getElementById('success-message');
-                if (successMessage) {
-                    setTimeout(function () {
-                        successMessage.style.opacity = '0';
-                        setTimeout(function () {
-                            successMessage.style.display = 'none';
-                        }, 600); // Delay before hiding the element
-                    }, 3000); // Display duration (3 seconds)
-                }
-            });
-        </script>
-    @endpush
 @endsection
