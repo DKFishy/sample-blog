@@ -4,12 +4,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
+
 // Route for the root URL to display posts index
 Route::get('/', [PostController::class, 'index'])->name('home');
 
 // Public routes for posts (index and show are accessible to all)
 Route::resource('posts', PostController::class)->only([
-    'index', 'show'
+    'index', 'show', 'create'
 ]);
 
 // Protected routes for posts (create, edit, update, delete)

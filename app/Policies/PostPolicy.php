@@ -18,7 +18,7 @@ class PostPolicy
     }
     
     public function create(User $user)
-    {
+    {	Log::info('PostPolicy create method called.', ['user_id' => $user->id]);
         return true; // Any authenticated user can create posts
     }
     
