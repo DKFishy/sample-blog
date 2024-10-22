@@ -12,7 +12,7 @@ class Post extends Model
     
     protected $fillable = [
     	'title',
-    	'body',
+    	'content',
     	'user_id',
     	];
     	
@@ -20,4 +20,9 @@ class Post extends Model
     	{
     		return $this->belongsTo(User::class);
     	}
+		
+		public function comments()
+		{
+			return $this->hasMany(Comment::class);
+		}
 }

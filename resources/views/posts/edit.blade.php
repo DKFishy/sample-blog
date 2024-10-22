@@ -26,8 +26,8 @@
         </div>
 
         <div class="mb-4">
-            <label for="body" class="block text-black dark:text-gray-400">Body</label>
-            <textarea class="form-control w-full mt-1" id="body" name="body" rows="5" required>{{ old('body', $post->body) }}</textarea>
+            <label for="content" class="block text-black dark:text-gray-400">Content</label>
+            <textarea class="form-control w-full mt-1" id="content" name="content" rows="5" required>{{ old('content', $post->content) }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary text-black dark:text-gray-400">Update Post</button>

@@ -38,12 +38,12 @@ class PostController extends Controller
     { 
         $request->validate([
             'title' => 'required|string|max:255',
-            'body' => 'required|string',
+            'content' => 'required|string',
         ]);
         
         Post::create([
             'title' => $request->input('title'),
-            'body' => $request->input('body'),
+            'content' => $request->input('content'),
             'user_id' => auth()->id(),
         ]);
         
@@ -74,7 +74,7 @@ class PostController extends Controller
     {
         $request->validate([
         'title' => 'required|string|max:255',
-        'body' => 'required|string',
+        'content' => 'required|string',
     	]);
 
     $post->update($request->all());

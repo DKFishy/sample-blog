@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 
 // Route for the root URL to display posts index
@@ -18,6 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class)->except([
         'index', 'show'
     ]);
+	Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 // Other routes
