@@ -14,18 +14,18 @@
 
     <!-- Comment Section -->
     <div class="mt-6">
-        <h2 class="text-xl font-bold mb-2 text-black dark:text-gray-300">Comments</h2>
-        <ul class="list-disc pl-5">
+        <h2 class="text-xl font-bold mb-4 text-black dark:text-gray-300">Comments</h2>
+        <ul class="list-none pl-5">
             @foreach($post->comments as $comment)
                 <li class="mb-2">
                     <strong class="text-black dark:text-gray-300">{{ $comment->user->name ?? 'Guest' }} created at {{ $comment->created_at->format('H:i, d M Y') }}:</strong>
 
-                    <p class="text-black dark:text-gray-400 mt-1 mb-2">{{ $comment->comment }}</p>
+                    <p class="text-black dark:text-gray-400 mb-5 mt-1">{{ $comment->comment }}</p>
                     @if(auth()->check() && (auth()->id() === $comment->user_id || auth()->id() === $post->user_id))
 						<form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="mt-2">
 							@csrf
 							@method('DELETE')
-							<button type="submit" class="text-red-600 bm-2">Delete</button>
+							<button type="submit" class="text-red-600 mb-2">Delete</button>
                         </form>
                     @endif
                 </li>

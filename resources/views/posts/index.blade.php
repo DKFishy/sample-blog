@@ -6,22 +6,13 @@
         
         <!-- Success Message -->
         @if(session('success'))
-    <div x-data="{ show: true }" 
-         x-init="setTimeout(() => show = false, 2000)" 
-         x-show="show"
-         x-transition:enter="transition-opacity ease-out duration-500"
-         x-transition:enter-start="opacity-100"
-         x-transition:leave="transition-opacity ease-in duration-500"
-         x-transition:leave-end="opacity-0"
-         class="fixed top-4 left-1/2 transform -translate-x-1/2 max-w-md w-full bg-green-100 text-green-800 border border-green-300 rounded p-4 z-50">
-        {{ session('success') }}
-    </div>
-@endif
+            <success-message message="{{ session('success') }}"></success-message>
+        @endif
         
         <!-- Create New Post Button -->
         @auth
-        <a href="{{ route('posts.create') }}" class="btn btn-primary text-black dark:text-gray-400">Create New Post</a>
-	    @endauth
+            <a href="{{ route('posts.create') }}" class="btn btn-primary text-black dark:text-gray-400">Create New Post</a>
+        @endauth
 	        
         <!-- Posts List -->
         <div class="mt-6">
@@ -32,6 +23,7 @@
                             <h5 class="card-title text-xl font-semibold">{{ $post->title }}</h5>
                             <p class="card-text text-gray-700">{{ Str::limit($post->body, 100) }}</p>
                             <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info mt-2 inline-block mr-2">Read More</a>
+                            
                             @if ($post->user_id == auth()->id())
                                 <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning mt-2 inline-block mr-2">Edit</a>
                                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline-block;">
