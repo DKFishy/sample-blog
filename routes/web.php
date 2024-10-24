@@ -11,13 +11,14 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 // Public routes for posts (index and show are accessible to all)
 Route::resource('posts', PostController::class)->only([
-    'index', 'show', 'create'
+    'index', 'show' , 'create' //Route handling for some reason makes post creation do 404 at any time if create is not included here.
+							   //With this configuration, comment creation works only for authenticated users.
 ]);
 
 // Protected routes for posts (create, edit, update, delete)
 Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class)->except([
-        'index', 'show'
+        'index', 'show' 
     ]);
 	Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
