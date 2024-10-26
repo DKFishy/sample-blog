@@ -27,8 +27,10 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('password'), // Use a default hashed password
             'remember_token' => Str::random(10),
+            // Add any additional fields here, like:
+            // 'role' => 'user', // Default role if your app requires roles
         ];
     }
 
