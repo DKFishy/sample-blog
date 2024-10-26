@@ -1,6 +1,6 @@
 <h1>Sample-blog</h1>
 
-This is a small Laravel app made with CRUD in mind. It allows creation of posts and comments.
+This is a small Laravel app made with CRUD in mind. It allows creation of posts and comments. Factory has been provided for seeding database with random content.
 At first it used Alpine.js, but it was replaced with Vue. Taillwind is used to provide basic styling, including light and dark mode.
 The current functionality is as follows:
 
@@ -26,5 +26,6 @@ Setting up instructions, based around WSL and Docker:
 	<li>If mysql (if used) stops, reporting existing socket conflict, change socket location in docker-compose.yml. Either use MYSQL_UNIX_ADDR: in mysql environment section /var/run/mysqld/mysqld.sock or command: --socket=/var/run/mysqld/mysqld.sock at end of mysql section.
 	<li>Stop the container using docker-compose down, then rebuild them either using docker-compose up --build or using ./vendor/bin/sail up --build. Alias can be made to shorten the use of sail command.</li>
 	<li>Run migrations. For Sail, it would be sail artisan migrate. If sail artisan expects different service name, add APP_SERVICE=app-name to the .env with actual name of the service</li>
+	<li>Seed database with sail artisan db:seed.</li>
 	<li>Install vite using sail npm install. After installation, run sail npm run dev to start vite development server.</li>
 </ol>
