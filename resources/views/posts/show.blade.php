@@ -20,7 +20,7 @@
                 <li class="mb-2">
                     <strong class="text-black dark:text-gray-300">{{ $comment->user->name ?? 'Guest' }} created at {{ $comment->created_at->format('H:i, d M Y') }}:</strong>
 
-                    <p class="text-black dark:text-gray-400 mb-5 mt-1">{{ $comment->comment }}</p>
+                    <p class="text-black dark:text-gray-400 mb-6 mt-1">{{ $comment->comment }}</p>
                     @if(auth()->check() && (auth()->id() === $comment->user_id || auth()->id() === $post->user_id))
 						<form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="mt-2">
 							@csrf
